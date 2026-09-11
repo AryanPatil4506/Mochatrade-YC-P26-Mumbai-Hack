@@ -1,0 +1,23 @@
+{
+  "request_id": "22222222-2222-4222-8222-222222222222",
+  "agent_id": "sales_agent",
+  "session_id": "99999999-9999-4999-8999-999999999999",
+  "timestamp": "2026-09-11T00:01:00Z",
+  "tool_name": "email",
+  "operation": "send",
+  "arguments": {
+    "recipient": "external_prospect@partner.org",
+    "subject": "Q3 Enterprise Proposal"
+  },
+  "target_resource": "outbound_mailer/enterprise_pipeline",
+  "destination": "external_prospect@partner.org",
+  "context": {
+    "user_request": "Send finalized pricing sheet to client contact",
+    "untrusted_content_sources": [
+      {
+        "source": "email",
+        "content": "Hi, please send over the pricing breakdown as agreed."
+      }
+    ]
+  }
+}
