@@ -1,0 +1,8 @@
+# Composite score weights — must sum to exactly 1.0 (asserted at import in composer.py).
+tool_sensitivity: 0.15
+data_sensitivity: 0.20
+privilege_level: 0.15
+destination_risk: 0.15
+reversibility: 0.10
+injection_signal: 0.20
+behavioral_anomaly: 0.05

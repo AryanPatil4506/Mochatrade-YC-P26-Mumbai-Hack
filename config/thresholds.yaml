@@ -1,0 +1,22 @@
+# Decision bands — half-open intervals, a score of exactly 60 is unambiguous.
+bands:
+  - min: 0
+    max: 30
+    decision: ALLOW
+    ui: green
+    set_policy_rule: false
+  - min: 30
+    max: 60
+    decision: ALLOW
+    ui: amber
+    set_policy_rule: true
+  - min: 60
+    max: 80
+    decision: REQUIRE_APPROVAL
+    ui: orange
+    set_policy_rule: false
+  - min: 80
+    max: 101
+    decision: BLOCK
+    ui: red
+    set_policy_rule: false
