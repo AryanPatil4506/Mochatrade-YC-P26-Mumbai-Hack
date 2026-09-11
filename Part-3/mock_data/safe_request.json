@@ -1,0 +1,22 @@
+{
+  "request_id": "11111111-1111-4111-8111-111111111111",
+  "agent_id": "support_agent",
+  "session_id": "99999999-9999-4999-8999-999999999999",
+  "timestamp": "2026-09-11T00:00:00Z",
+  "tool_name": "crm",
+  "operation": "read",
+  "arguments": {
+    "customer_id": "CUST-1049"
+  },
+  "target_resource": "customers/CUST-1049",
+  "destination": null,
+  "context": {
+    "user_request": "Retrieve customer profile for support ticket #441",
+    "untrusted_content_sources": [
+      {
+        "source": "ticket",
+        "content": "Customer requesting account status review."
+      }
+    ]
+  }
+}

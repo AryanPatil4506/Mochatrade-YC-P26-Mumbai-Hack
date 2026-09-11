@@ -1,0 +1,18 @@
+{
+  "request_id": "44444444-4444-4444-8444-444444444444",
+  "agent_id": "support_agent",
+  "session_id": "99999999-9999-4999-8999-999999999999",
+  "timestamp": "2026-09-11T00:03:00Z",
+  "tool_name": "database",
+  "operation": "delete",
+  "arguments": {
+    "table": "temp_cache",
+    "filter": "expired=true"
+  },
+  "target_resource": "database/cache/temp_cache",
+  "destination": null,
+  "context": {
+    "user_request": "Purge expired cache rows",
+    "untrusted_content_sources": []
+  }
+}
