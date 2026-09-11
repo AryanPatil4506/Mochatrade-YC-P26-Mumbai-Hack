@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { CheckCircle2 } from "lucide-react";
 import { listApprovals, resolveApproval } from "../api/approvals";
 import type { ApprovalRecord } from "../types/contracts";
 
@@ -72,38 +73,39 @@ export function ApprovalCard({ refreshSignal }: Props) {
   }, [approvals, selected, busy, resolve]);
 
   return (
-    <div className="border-b border-border">
-      <div className="flex items-center justify-between px-4 pt-4">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
+    <div className="border-b border-border p-4">
+      <div className="flex items-center justify-between">
+        <h2 className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+          <CheckCircle2 size={13} className="text-brand" />
           Approval Queue {approvals.length > 0 && `(${approvals.length})`}
         </h2>
         <span className="font-mono text-[10px] text-ink-muted">a = approve · r = reject</span>
       </div>
 
-      {error && <p className="px-4 pt-2 text-xs text-block">{error}</p>}
+      {error && <p className="pt-2 text-xs text-block">{error}</p>}
 
-      <div className="max-h-64 space-y-2 overflow-y-auto p-4">
+      <div className="mt-3 max-h-64 space-y-2 overflow-y-auto">
         {approvals.length === 0 && <p className="text-sm text-ink-muted">No pending approvals.</p>}
         {approvals.map((a, i) => (
           <div
             key={a.approval_id}
             onClick={() => setSelected(i)}
-            className={`cursor-pointer rounded border p-3 text-sm ${
-              i === selected ? "border-approval bg-approval/10" : "border-border"
+            className={`sentinel-card cursor-pointer p-3 text-sm transition-colors ${
+              i === selected ? "border-brand/50" : ""
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs text-ink-muted">{a.request_id.slice(0, 8)}</span>
-              <span className="font-mono text-xs text-ink-muted">{a.approval_id.slice(0, 8)}</span>
+              <span className="font-mono text-xs text-ink-muted">req {a.request_id.slice(0, 8)}</span>
+              <span className="font-mono text-xs text-ink-muted">appr {a.approval_id.slice(0, 8)}</span>
             </div>
-            <div className="mt-2 flex gap-2">
+            <div className="mt-2.5 flex gap-2">
               <button
                 disabled={busy === a.approval_id}
                 onClick={(e) => {
                   e.stopPropagation();
                   resolve(a.approval_id, "APPROVED");
                 }}
-                className="flex-1 rounded bg-allow/20 px-2 py-1 text-xs font-medium text-allow hover:bg-allow/30 disabled:opacity-50"
+                className="sentinel-btn flex-1 bg-allow px-2 py-1.5 text-xs text-[#06210f] hover:brightness-110 disabled:opacity-50"
               >
                 Approve
               </button>
@@ -113,7 +115,7 @@ export function ApprovalCard({ refreshSignal }: Props) {
                   e.stopPropagation();
                   resolve(a.approval_id, "REJECTED");
                 }}
-                className="flex-1 rounded bg-block/20 px-2 py-1 text-xs font-medium text-block hover:bg-block/30 disabled:opacity-50"
+                className="sentinel-btn flex-1 bg-surface-raised px-2 py-1.5 text-xs text-block ring-1 ring-inset ring-block/40 hover:bg-block/10 disabled:opacity-50"
               >
                 Reject
               </button>

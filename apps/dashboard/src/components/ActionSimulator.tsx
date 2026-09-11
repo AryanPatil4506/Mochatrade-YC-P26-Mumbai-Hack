@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FlaskConical } from "lucide-react";
 import { evaluateAction } from "../api/gateway";
 import { execute } from "../api/executor";
 import { ACTION_FIXTURES, freshAction } from "../data/fixtures";
@@ -63,21 +64,24 @@ export function ActionSimulator({ onResult }: Props) {
   }
 
   return (
-    <div className="border-b border-border p-3">
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-ink-muted">Action Simulator</p>
+    <div className="border-b border-border p-4">
+      <p className="mb-2.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+        <FlaskConical size={13} className="text-brand" />
+        Action Simulator
+      </p>
       <div className="flex flex-wrap gap-1.5">
         {ACTION_FIXTURES.map((f) => (
           <button
             key={f.id}
             disabled={running !== null}
             onClick={() => run(f.id)}
-            className="rounded border border-border bg-surface px-2 py-1 text-xs text-ink hover:bg-surface-raised disabled:opacity-50"
+            className="sentinel-btn sentinel-btn-ghost px-2.5 py-1.5 text-xs disabled:opacity-50"
           >
             {running === f.id ? "running…" : f.label}
           </button>
         ))}
       </div>
-      {lastNote && <p className="mt-2 font-mono text-[11px] text-ink-muted">{lastNote}</p>}
+      {lastNote && <p className="mt-2.5 font-mono text-[11px] text-ink-muted">{lastNote}</p>}
     </div>
   );
 }

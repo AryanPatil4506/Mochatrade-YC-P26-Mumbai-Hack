@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { MessageSquare } from "lucide-react";
 import { createSession, sendMessage } from "../api/agent";
 import { useSessionEvents } from "../hooks/useSessionEvents";
 
@@ -55,12 +56,15 @@ export function SessionTranscript({ onDecision }: Props) {
   return (
     <div className="flex h-full flex-col">
       <div className="border-b border-border p-4">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">Agent Session</h2>
+        <h2 className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+          <MessageSquare size={13} className="text-brand" />
+          Agent Session
+        </h2>
         <div className="mt-3 flex gap-2">
           <select
             value={agentId}
             onChange={(e) => setAgentId(e.target.value)}
-            className="flex-1 rounded border border-border bg-surface px-2 py-1.5 text-sm text-ink"
+            className="flex-1 rounded-lg border border-border bg-surface-raised px-2.5 py-1.5 text-sm text-ink outline-none focus:border-brand/60"
           >
             {AGENT_IDS.map((id) => (
               <option key={id} value={id}>
@@ -71,15 +75,18 @@ export function SessionTranscript({ onDecision }: Props) {
           <button
             onClick={handleNewSession}
             disabled={creating}
-            className="rounded border border-border bg-surface-raised px-3 py-1.5 text-sm font-medium text-ink hover:bg-border disabled:opacity-50"
+            className="sentinel-btn sentinel-btn-primary px-3 py-1.5 text-sm disabled:opacity-50"
           >
             New session
           </button>
         </div>
         {sessionId && (
-          <p className="mt-2 truncate font-mono text-xs text-ink-muted">
-            session <span className="text-ink">{sessionId}</span>{" "}
-            <span className={connected ? "text-allow" : "text-block"}>{connected ? "● live" : "● offline"}</span>
+          <p className="mt-2.5 flex items-center gap-1.5 truncate font-mono text-[11px] text-ink-muted">
+            <span
+              className="h-1.5 w-1.5 flex-none rounded-full"
+              style={{ background: connected ? "var(--color-allow)" : "var(--color-block)" }}
+            />
+            {sessionId}
           </p>
         )}
       </div>
@@ -101,12 +108,12 @@ export function SessionTranscript({ onDecision }: Props) {
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
           disabled={!sessionId}
           placeholder={sessionId ? "Ask the agent to do something…" : "Create a session first"}
-          className="flex-1 rounded border border-border bg-surface px-3 py-2 text-sm text-ink placeholder:text-ink-muted disabled:opacity-50"
+          className="flex-1 rounded-lg border border-border bg-surface-raised px-3 py-2 text-sm text-ink placeholder:text-ink-muted/70 outline-none focus:border-brand/60 disabled:opacity-50"
         />
         <button
           onClick={handleSend}
           disabled={!sessionId || !draft.trim()}
-          className="rounded bg-surface-raised px-4 py-2 text-sm font-medium text-ink hover:bg-border disabled:opacity-50"
+          className="sentinel-btn sentinel-btn-primary px-4 py-2 text-sm disabled:opacity-40"
         >
           Send
         </button>
@@ -118,14 +125,14 @@ export function SessionTranscript({ onDecision }: Props) {
 function TranscriptLine({ event }: { event: import("../types/api").AgentSessionEvent }) {
   switch (event.type) {
     case "user_message":
-      return <div className="rounded bg-surface-raised px-3 py-2 text-sm text-ink">{event.content}</div>;
+      return <div className="rounded-lg bg-surface-raised px-3 py-2 text-sm text-ink">{event.content}</div>;
     case "assistant_message":
-      return <div className="rounded border border-border px-3 py-2 text-sm text-ink">{event.content}</div>;
+      return <div className="rounded-lg border border-border px-3 py-2 text-sm text-ink">{event.content}</div>;
     case "taint_read":
       // Tainted content visually distinct — this line came from an
       // untrusted external source (email/ticket/web_page/database_record).
       return (
-        <div className="rounded border border-dashed border-flagged/60 bg-flagged/10 px-3 py-2 text-xs text-flagged">
+        <div className="rounded-lg border border-dashed border-flagged/50 bg-flagged/10 px-3 py-2 text-xs text-flagged">
           ⚠ read untrusted <span className="font-mono">{event.source}</span>:{event.reference}
         </div>
       );

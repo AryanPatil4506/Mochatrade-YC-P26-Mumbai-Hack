@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ShieldAlert } from "lucide-react";
 import { listLabScenarios, runLabScenario } from "../api/executor";
 import { simulateCompromise } from "../api/agent";
 import type { LabScenarioMeta } from "../types/api";
@@ -53,8 +54,11 @@ export function AttackLab({ onResult }: Props) {
   }
 
   return (
-    <div className="border-b border-border p-3">
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-ink-muted">Attack Simulation Lab</p>
+    <div className="border-b border-border p-4">
+      <p className="mb-2.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+        <ShieldAlert size={13} className="text-brand" />
+        Attack Simulation Lab
+      </p>
       <div className="flex flex-wrap gap-1.5">
         {scenarios.map((s) => (
           <button
@@ -62,7 +66,7 @@ export function AttackLab({ onResult }: Props) {
             disabled={running !== null}
             title={s.description}
             onClick={() => run(s.id)}
-            className="rounded border border-border bg-surface px-2 py-1 text-xs text-ink hover:bg-surface-raised disabled:opacity-50"
+            className="sentinel-btn sentinel-btn-ghost px-2.5 py-1.5 text-xs disabled:opacity-50"
           >
             {running === s.id ? "running…" : s.name}
           </button>
@@ -71,12 +75,12 @@ export function AttackLab({ onResult }: Props) {
           disabled={running !== null}
           onClick={runCompromise}
           title="POST /v1/agent/simulate-compromise — calls the executor directly with a forged token, bypassing the gateway"
-          className="rounded border border-block/50 bg-block/10 px-2 py-1 text-xs text-block hover:bg-block/20 disabled:opacity-50"
+          className="sentinel-btn bg-block/15 px-2.5 py-1.5 text-xs text-block ring-1 ring-inset ring-block/40 hover:bg-block/25 disabled:opacity-50"
         >
           {running === "simulate-compromise" ? "running…" : "Simulate compromised agent"}
         </button>
       </div>
-      {note && <p className="mt-2 font-mono text-[11px] text-ink-muted">{note}</p>}
+      {note && <p className="mt-2.5 font-mono text-[11px] text-ink-muted">{note}</p>}
     </div>
   );
 }

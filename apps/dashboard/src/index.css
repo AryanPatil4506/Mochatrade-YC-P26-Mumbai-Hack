@@ -1,23 +1,30 @@
 @import "tailwindcss";
 
-/* Sentinel AI dashboard palette — per CLAUDE.md: color carries meaning only,
-   never decorative. Four semantic verdict colors, one ground, near-white
-   surfaces. No dark-mode toggle — this is the only theme. */
+/* Sentinel AI dashboard palette — warm dark ground with a single orange
+   brand accent (logo, primary actions, focus states), plus four semantic
+   verdict colors used only for decision meaning (allow/flagged/approval/
+   block), inspired by the product's marketing/auth mockups. Cosmetic only —
+   layout, columns and components are unchanged. */
 @theme {
-  --color-ground: #12141a;
-  --color-surface: #1a1d25;
-  --color-surface-raised: #20232c;
-  --color-border: #2b2f3a;
-  --color-ink: #e8e9ed;
-  --color-ink-muted: #9195a3;
+  --color-ground: #121011;
+  --color-surface: #1b1817;
+  --color-surface-raised: #22201e;
+  --color-border: #332e2a;
+  --color-ink: #f5f1ec;
+  --color-ink-muted: #a19a92;
 
-  --color-allow: #2e9e6b;
-  --color-flagged: #c9922e;
-  --color-approval: #d9722b;
-  --color-block: #c6373c;
+  --color-brand: #e2672e;
+  --color-brand-soft: #e2672e1f;
+
+  --color-allow: #34b96b;
+  --color-flagged: #e0a92e;
+  --color-approval: #e2672e;
+  --color-block: #e0463f;
 
   --font-sans: "Inter", system-ui, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
 }
 
 @layer base {
@@ -27,7 +34,9 @@
 
   body {
     margin: 0;
-    background: var(--color-ground);
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, color-mix(in srgb, var(--color-brand) 10%, transparent), transparent),
+      var(--color-ground);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-synthesis: none;
@@ -42,5 +51,66 @@
 
   .font-mono {
     font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background: var(--color-brand-soft);
+  }
+
+  /* Thin, unobtrusive scrollbars that fit the dark theme. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+}
+
+@layer components {
+  .sentinel-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .sentinel-btn {
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .sentinel-btn-primary {
+    background: var(--color-brand);
+    color: #1a0f08;
+  }
+  .sentinel-btn-primary:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-brand) 88%, white);
+  }
+
+  .sentinel-btn-ghost {
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    color: var(--color-ink);
+  }
+  .sentinel-btn-ghost:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--color-brand) 50%, var(--color-border));
+  }
+
+  .sentinel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .sentinel-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    flex: none;
   }
 }

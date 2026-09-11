@@ -23,3 +23,8 @@ export function colorForScore(score: number, decision: Verdict): string {
   if (decision === "REQUIRE_APPROVAL") return VERDICT_COLOR.REQUIRE_APPROVAL;
   return score >= 30 ? "var(--color-flagged)" : VERDICT_COLOR.ALLOW;
 }
+
+// Soft-tint pill badge colors (background + foreground) for verdict labels.
+export function badgeStyle(color: string): { background: string; color: string } {
+  return { background: `color-mix(in srgb, ${color} 16%, transparent)`, color };
+}

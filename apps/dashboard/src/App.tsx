@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { ShieldCheck } from "lucide-react";
 import { SessionTranscript } from "./components/SessionTranscript";
 import { RiskGauge } from "./components/RiskGauge";
 import { FactorBars } from "./components/FactorBars";
@@ -47,10 +48,16 @@ function App() {
 
   return (
     <div className="grid h-screen grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] grid-rows-[auto_1fr] bg-ground text-ink">
-      <header className="col-span-3 flex items-center border-b border-border px-4 py-2">
-        <h1 className="text-sm font-semibold tracking-wide text-ink-muted">
-          SENTINEL AI <span className="text-ink">— Runtime Security Gateway</span>
-        </h1>
+      <header className="col-span-3 flex items-center gap-2.5 border-b border-border bg-surface/60 px-5 py-3">
+        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-soft text-brand">
+          <ShieldCheck size={18} strokeWidth={2.25} />
+        </span>
+        <div className="leading-tight">
+          <h1 className="text-[15px] font-semibold text-ink">Sentinel AI</h1>
+          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-muted">
+            Runtime Security Gateway
+          </p>
+        </div>
       </header>
 
       <section className="col-start-1 row-start-2 flex flex-col overflow-hidden border-r border-border">

@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
+import { History } from "lucide-react";
 import { getAuditTimeline } from "../api/executor";
 import type { AuditLogRow } from "../types/api";
 import type { ActivityEvent } from "../types/api";
 import { VERDICT_COLOR, type Verdict } from "../lib/palette";
+import { Badge } from "./Badge";
 
 interface Props {
   liveEvents: ActivityEvent[];
@@ -34,20 +36,25 @@ export function IncidentTimeline({ liveEvents }: Props) {
 
   return (
     <div className="flex-1 overflow-y-auto p-4">
-      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink-muted">Incident Timeline</h2>
-      <div className="space-y-1.5">
+      <h2 className="mb-3 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+        <History size={13} className="text-brand" />
+        Incident Timeline
+      </h2>
+      <div className="space-y-2">
         {rows.length === 0 && <p className="text-sm text-ink-muted">No audit history yet.</p>}
         {rows.map((row) => {
           const color = isVerdict(row.decision) ? VERDICT_COLOR[row.decision] : "var(--color-ink-muted)";
           return (
-            <div key={row.audit_log_id} className="border-l-2 py-1 pl-3 text-xs" style={{ borderColor: color }}>
-              <div className="flex items-center justify-between text-ink-muted">
-                <span className="font-mono">{new Date(row.created_at).toLocaleTimeString()}</span>
-                <span className="font-semibold" style={{ color }}>
-                  {row.decision}
-                </span>
+            <div
+              key={row.audit_log_id}
+              className="rounded-lg border-l-2 bg-surface px-3 py-2 text-xs"
+              style={{ borderColor: color }}
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-ink-muted">{new Date(row.created_at).toLocaleTimeString()}</span>
+                <Badge color={color}>{row.decision}</Badge>
               </div>
-              <div className="mt-0.5 flex items-center justify-between">
+              <div className="mt-1.5 flex items-center justify-between">
                 <span className="font-mono text-ink">
                   {row.tool_name}.{row.operation}
                 </span>
