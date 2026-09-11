@@ -1,9 +1,58 @@
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+*.pyd
+*.so
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Databases
 sentinel.db
 sentinel.db-wal
 sentinel.db-shm
-*.egg-info/
-node_modules/
+
+# Environment and secrets
 .env
+.env.*
+!.env.example
+
+# Node / frontend
+node_modules/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+android/.gradle/
+android/local.properties
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+sentinel_ai/build/
+
+# Generated or local artifacts
+coverage/
+htmlcov/
+.dist/

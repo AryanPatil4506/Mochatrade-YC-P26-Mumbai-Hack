@@ -1,0 +1,45 @@
+name: sentinel_ai
+description: Sentinel AI — AI Agent Governance Platform
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management
+  flutter_riverpod: ^2.6.1
+
+  # HTTP client
+  dio: ^5.7.0
+
+  # Navigation
+  go_router: ^14.6.2
+
+  # SSE streaming
+  http: ^1.2.2
+
+  # JSON parsing helper
+  json_annotation: ^4.9.0
+
+  # UI
+  google_fonts: ^6.2.1
+  fl_chart: ^0.69.0
+  shimmer: ^3.0.0
+  cached_network_image: ^3.4.1
+
+  # Utils
+  intl: ^0.19.0
+  equatable: ^2.0.5
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
