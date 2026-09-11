@@ -10,6 +10,7 @@ POST /v1/agent/simulate-compromise   calls the executor directly, no token
 
 from __future__ import annotations
 
+import json
 import os
 from datetime import datetime, timezone
 from typing import Any
@@ -123,7 +124,11 @@ async def stream_events(session_id: UUID) -> EventSourceResponse:
 
     async def event_generator():
         async for event in events.subscribe(session_id):
-            yield {"event": event.get("type", "message"), "data": event}
+            # sse-starlette does `str(data)` when encoding a raw dict, which
+            # produces Python repr (single quotes, True/None) rather than
+            # JSON — no browser EventSource client can JSON.parse that.
+            # json.dumps it ourselves so `data:` is valid JSON on the wire.
+            yield {"event": event.get("type", "message"), "data": json.dumps(event)}
 
     return EventSourceResponse(event_generator())
 

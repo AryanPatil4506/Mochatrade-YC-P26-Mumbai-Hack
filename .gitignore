@@ -7,3 +7,5 @@ sentinel.db-shm
 *.egg-info/
 node_modules/
 .env
+dist/
+.venv/

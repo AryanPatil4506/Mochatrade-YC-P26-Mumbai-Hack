@@ -15,6 +15,7 @@ structural + capability-token enforcement layers per CLAUDE.md.
 
 from __future__ import annotations
 
+import json
 from datetime import datetime, timezone
 from typing import Any, Optional
 from uuid import UUID
@@ -151,6 +152,8 @@ async def internal_publish_event(event: dict[str, Any]) -> dict:
 async def stream_events() -> EventSourceResponse:
     async def event_generator():
         async for event in events.subscribe():
-            yield {"event": event.get("type", "message"), "data": event}
+            # See the matching comment in services/agent/api.py: sse-starlette
+            # would otherwise `str(dict)`-encode this (Python repr, not JSON).
+            yield {"event": event.get("type", "message"), "data": json.dumps(event)}
 
     return EventSourceResponse(event_generator())
