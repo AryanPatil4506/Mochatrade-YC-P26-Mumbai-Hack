@@ -1,0 +1,63 @@
+# Seven rule families for prompt-injection detection (case-insensitive regex).
+# Score = highest matching family's score, +10 per additional distinct
+# family matched (cap 100). See injection.py for scoring logic.
+families:
+  instruction_override:
+    score: 85
+    patterns:
+      - "ignore (all|any|the) (previous|prior|above) instructions"
+      - "disregard (all|any|the) (previous|prior|above) (instructions|rules)"
+      - "forget (everything|all) (you were|i) told"
+      - "new instructions?:"
+      - "override (your|the) (instructions|rules|system prompt)"
+
+  role_persona_hijack:
+    score: 75
+    patterns:
+      - "you are now (in )?[a-z0-9 _-]{0,40}mode"
+      - "act as (an?|the) [a-z0-9 _-]{2,40}"
+      - "pretend (to be|you are)"
+      - "from now on,? you (are|will)"
+      - "you have (full|unrestricted|complete) authority"
+
+  exfiltration_directive:
+    score: 90
+    patterns:
+      - "(export|dump|extract|download) (the )?(entire|full|all)?\\s*(customer|user|database)"
+      - "send (it|this|the (data|export|file)) to [^\\s]+@[^\\s]+"
+      - "email .* to [^\\s]+@[^\\s]+"
+      - "exfiltrate"
+      - "copy (all|every) (record|row|file)s? (to|into)"
+
+  authority_impersonation:
+    score: 80
+    patterns:
+      - "as (the|your) (ceo|admin|administrator|system administrator|security team)"
+      - "this is (an? )?official (request|order|directive)"
+      - "i am (the|your) (developer|creator|owner|administrator)"
+      - "on behalf of (the )?(security|compliance|legal) team"
+
+  delimiter_format_injection:
+    score: 80
+    patterns:
+      - "```\\s*system"
+      - "\\[system\\]"
+      - "<\\|im_start\\|>"
+      - "end of (user )?(message|context|input)"
+      - "-{3,}\\s*(begin|start) (system|instructions)"
+
+  encoding_evasion:
+    score: 85
+    patterns:
+      - "decode (this|the following) (base64|hex|rot13)"
+      - "base64 ?decode"
+      - "\\\\x[0-9a-f]{2}(\\\\x[0-9a-f]{2}){5,}"
+
+  urgency_secrecy:
+    score: 70
+    patterns:
+      - "urgent(ly)?.{0,40}(confidential|secret|do not tell|don't tell)"
+      - "before anyone (notices|finds out)"
+      - "must (stay|remain) confidential"
+      - "act (immediately|now),? (do not|don't) (ask|ask for confirmation|wait)"
+      - "keep this (between us|secret|confidential)"

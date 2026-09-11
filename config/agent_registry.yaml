@@ -1,0 +1,38 @@
+# Per-agent grants used by detection/privilege.py.
+# `role` is descriptive only; enforcement is via the explicit lists/limits below.
+agents:
+  crm-assistant-01:
+    role: crm_read_assistant
+    allowed_tools: [crm]
+    allowed_operations: [read]
+    max_records_per_read: 25
+    allowed_destinations_pattern: null
+
+  support-triage-01:
+    role: ticket_triage_assistant
+    allowed_tools: [ticketing, crm]
+    allowed_operations: [read, update]
+    max_records_per_read: 25
+    allowed_destinations_pattern: null
+
+  reporting-bot-01:
+    role: reporting_readonly
+    allowed_tools: [database, crm]
+    allowed_operations: [read]
+    max_records_per_read: 500
+    allowed_destinations_pattern: null
+
+  outreach-bot-01:
+    role: outreach_assistant
+    allowed_tools: [email, crm]
+    allowed_operations: [read, send]
+    max_records_per_read: 50
+    allowed_destinations_pattern: "^[A-Za-z0-9._%+-]+@ourcompany\\.com$"
+
+# Fallback for any agent_id not explicitly registered — deny by default.
+default:
+  role: unregistered
+  allowed_tools: []
+  allowed_operations: []
+  max_records_per_read: 0
+  allowed_destinations_pattern: null

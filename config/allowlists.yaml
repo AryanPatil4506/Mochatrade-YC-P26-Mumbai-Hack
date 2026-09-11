@@ -1,0 +1,31 @@
+# Destination classification lists used by detection/destination.py.
+internal_domains:
+  - ourcompany.com
+internal_cidrs:
+  - 10.0.0.0/8
+
+partner_domains:
+  - partner-crm.io
+  - trusted-vendor.com
+
+free_mail_domains:
+  - gmail.com
+  - outlook.com
+  - hotmail.com
+  - proton.me
+  - protonmail.com
+  - yahoo.com
+  - mail.ru
+
+# Regex fragments (matched against the destination host) that always score 95 —
+# paste/file-drop/tunnel hosts, raw IPs, URL shorteners.
+high_risk_patterns:
+  - "pastebin\\.com"
+  - "paste-?bin"
+  - "ngrok\\.io"
+  - "ngrok-free\\.app"
+  - "transfer\\.sh"
+  - "file\\.io"
+  - "bit\\.ly"
+  - "tinyurl\\.com"
+  - "^\\d{1,3}(\\.\\d{1,3}){3}$"
