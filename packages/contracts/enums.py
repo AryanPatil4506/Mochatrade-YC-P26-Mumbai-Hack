@@ -1,4 +1,4 @@
-"""Enumerations shared across all four parts of Sentinel. Frozen — see CLAUDE.md."""
+"""Enumerations shared across all four parts of Sentinel. Frozen — do not rename, add, or remove members without sign-off from all four parts."""
 
 from enum import Enum
 

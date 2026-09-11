@@ -15,8 +15,8 @@ const MAX_BUFFER = 200;
 // Subscribes to the executor's shared activity bus (GET /v1/events,
 // services/executor/events.py) — carries "decision" events relayed from the
 // gateway and "execution"/"execution_denied" events from the executor
-// itself. This is the bus CLAUDE.md calls "the single GET /v1/events" —
-// distinct from the per-session agent stream in useSessionEvents.
+// itself. This is the single, service-wide event stream — distinct from
+// the per-session agent stream in useSessionEvents.
 export function useActivityStream(onDecision?: (e: DecisionActivityEvent) => void) {
   const [events, setEvents] = useState<ActivityEvent[]>([]);
   const [connected, setConnected] = useState(false);

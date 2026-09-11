@@ -1,7 +1,7 @@
-"""Prompt templates for the two non-authoritative LLM calls (see CLAUDE.md
-— Model & Library Choices). Neither call's output is trusted without
-server-side revalidation; the action-proposal call in particular has zero
-say over `decision`, `risk_score`, or any `risk_factors` value.
+"""Prompt templates for the two non-authoritative LLM calls. Neither call's
+output is trusted without server-side revalidation; the action-proposal
+call in particular has zero say over `decision`, `risk_score`, or any
+`risk_factors` value.
 """
 
 SYSTEM_PROMPT = """You are an AI assistant with access to CRM, ticketing, \

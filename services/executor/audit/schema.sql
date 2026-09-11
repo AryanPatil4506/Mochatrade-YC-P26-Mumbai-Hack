@@ -1,7 +1,7 @@
 -- Sentinel AI -- Executor (Part 4) SQLite schema.
 -- audit_logs / approval_records match the frozen AuditLogEntry / ApprovalRecord
 -- contracts in packages/contracts/schemas.py field-for-field. Table internals
--- beyond those fields are changeable per CLAUDE.md.
+-- beyond those fields are free to change.
 
 CREATE TABLE IF NOT EXISTS audit_logs (
     audit_log_id  TEXT PRIMARY KEY,

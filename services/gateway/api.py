@@ -11,6 +11,10 @@ capability_token this endpoint returns.
 
 from __future__ import annotations
 
+from dotenv import load_dotenv
+
+load_dotenv()  # picks up .env (signing keys, model overrides, etc.) before other imports
+
 from fastapi import FastAPI
 
 from packages.contracts.schemas import Decision, ProposedAction

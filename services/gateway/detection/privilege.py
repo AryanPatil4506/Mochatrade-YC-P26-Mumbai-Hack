@@ -1,4 +1,4 @@
-"""`privilege_level` — from config/agent_registry.yaml, per CLAUDE.md.
+"""`privilege_level` — from config/agent_registry.yaml.
 
 `100` always means "asked for something never granted" — the hardest
 escalation floor keys off this value, so it must only ever be returned for

@@ -12,6 +12,8 @@ dependencies = [
     "sse-starlette>=2.0.0",
     "langgraph",
     "langchain-core",
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
 ]
 
 [project.optional-dependencies]

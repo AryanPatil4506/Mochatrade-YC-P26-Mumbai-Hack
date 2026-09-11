@@ -4,7 +4,7 @@ One file (default: repo root `sentinel.db`) is opened by both the gateway
 process (to create audit rows and approval records at decision time) and the
 executor process (to update them at execution time, and to check capability
 token replay). This is a plain-file, in-process-friendly choice appropriate
-for the "SQLite, no Postgres" constraint in CLAUDE.md; both sides only ever
+for the "SQLite, no Postgres" constraint on this build; both sides only ever
 touch this module, never each other's memory.
 """
 

@@ -1,11 +1,17 @@
 """The one in-path, non-authoritative LLM call: propose a tool call.
 
-`temperature=0` and a fixed `seed` per CLAUDE.md. Output is untrusted input
-— re-validated with Pydantic after OpenAI's own Structured Outputs
-validation, per "Model & Library Choices". This call decides nothing about
-risk or policy; it only proposes *what* the agent would like to do next.
+`temperature=0` and a fixed `seed` — model choice itself is a deliberately
+changeable implementation detail. Output is untrusted input — re-validated
+with Pydantic after the provider's own structured tool-call output. This
+call decides nothing about risk or policy; it only proposes *what* the
+agent would like to do next.
 
-If no `OPENAI_API_KEY` is configured (e.g. running tests, or a demo machine
+Provider: Groq (OpenAI-compatible chat completions API), reached with the
+`openai` SDK pointed at Groq's base URL — no extra dependency needed. Model
+and base URL are overridable via env vars so a demo machine can swap
+providers without a code change.
+
+If no `GROQ_API_KEY` is configured (e.g. running tests, or a demo machine
 with no key set up), `propose_tool_call` falls back to a small deterministic
 keyword-matching stub so the rest of the graph is exercisable offline. This
 fallback is clearly a dev convenience, not a second code path used in the
@@ -21,7 +27,8 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 from services.agent.llm.prompts import SYSTEM_PROMPT, build_user_turn
 from services.agent.llm.tool_schemas import TOOL_FUNCTIONS, TOOL_NAME_OPERATION_MAP
 
-MODEL_NAME = "gpt-4o-mini"
+GROQ_BASE_URL = os.environ.get("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
+MODEL_NAME = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
 FIXED_SEED = 7
 
 
@@ -69,13 +76,13 @@ def _stub_propose(user_request: str) -> ToolCallProposal:
 
 
 def propose_tool_call(user_request: str, observed_context: list[str]) -> ToolCallProposal:
-    api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
         return _stub_propose(user_request)
 
     from openai import OpenAI
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=api_key, base_url=GROQ_BASE_URL)
     response = client.chat.completions.create(
         model=MODEL_NAME,
         temperature=0,

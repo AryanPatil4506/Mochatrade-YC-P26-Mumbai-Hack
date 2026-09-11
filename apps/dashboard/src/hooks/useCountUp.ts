@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 // Animates a number from its previous value to `target` over `duration`ms.
-// Used by RiskGauge for the ~600ms count-up per CLAUDE.md's component spec.
+// Used by RiskGauge for its ~600ms count-up animation.
 export function useCountUp(target: number, duration = 600): number {
   const [value, setValue] = useState(target);
   const fromRef = useRef(target);

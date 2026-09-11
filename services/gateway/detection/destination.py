@@ -1,4 +1,4 @@
-"""`destination_risk` — from config/allowlists.yaml, per CLAUDE.md."""
+"""`destination_risk` — from config/allowlists.yaml."""
 
 from __future__ import annotations
 

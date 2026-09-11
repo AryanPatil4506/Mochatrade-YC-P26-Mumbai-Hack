@@ -1,7 +1,7 @@
 """Schema-only tool registry.
 
 No tool implementations exist in the agent process (layer 1 of the
-enforcement boundary in CLAUDE.md) — these are OpenAI function-calling
+enforcement boundary) — these are OpenAI-style function-calling
 schemas used only to constrain what the LLM can *propose*. Actual execution
 happens only in the executor service (Part 4), gated by the gateway
 (Part 3). `TOOL_NAME_OPERATION_MAP` is the fixed mapping from a function

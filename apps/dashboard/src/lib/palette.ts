@@ -1,5 +1,5 @@
 // Central mapping from decision/ui values to the fixed semantic palette.
-// Color carries meaning only, never decorative — see CLAUDE.md.
+// Color carries meaning only, never decorative.
 
 export type Verdict = "ALLOW" | "REQUIRE_APPROVAL" | "BLOCK";
 

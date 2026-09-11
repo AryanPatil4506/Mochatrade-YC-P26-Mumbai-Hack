@@ -2,8 +2,8 @@
 
 One `asyncio.Queue` per session. Nodes call `publish()` as the graph runs;
 `GET /v1/agent/sessions/{id}` (via `/v1/events`-style streaming, see api.py)
-reads from `subscribe()`. No polling, no external broker — matches the
-"SSE is sufficient" constraint in CLAUDE.md's Do-Not-Build list.
+reads from `subscribe()`. No polling, no external broker — SSE is sufficient
+here, no WebSocket infrastructure needed.
 """
 
 from __future__ import annotations

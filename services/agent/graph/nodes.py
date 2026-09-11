@@ -12,8 +12,8 @@ Tool execution in `handle_decision` is a STUB for this scope (Part 4 /
 executor is a teammate's build): on ALLOW it only logs
 "would execute: <tool>.<operation>" instead of calling a real executor.
 Second-order taint: whatever that stub "result" says is re-tainted through
-the same ContextAdapter before anything downstream could see it, per
-CLAUDE.md's "tool results are untrusted too".
+the same ContextAdapter before anything downstream could see it — tool
+results are untrusted too.
 """
 
 from __future__ import annotations

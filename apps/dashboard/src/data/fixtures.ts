@@ -4,8 +4,8 @@
 // known-good payloads. Copied verbatim; freshAction() below regenerates
 // request_id/session_id/timestamp per run so repeated clicks aren't served
 // the gateway's idempotency cache (same request_id -> cached decision,
-// detectors not re-run, per CLAUDE.md) and don't try to redeem an
-// already-expired capability_token from an earlier run.
+// detectors not re-run) and don't try to redeem an already-expired
+// capability_token from an earlier run.
 
 import type { ProposedAction } from "../types/contracts";
 

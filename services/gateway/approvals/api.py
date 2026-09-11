@@ -1,4 +1,4 @@
-"""GET /v1/approvals, POST /v1/approvals/{id}/resolve — per CLAUDE.md."""
+"""GET /v1/approvals, POST /v1/approvals/{id}/resolve."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ class ResolveApprovalRequest(BaseModel):
 
 class ResolveApprovalResponse(BaseModel):
     """ApprovalRecord (extra=forbid, frozen) has no room for a token field,
-    but CLAUDE.md's endpoint spec explicitly returns "ApprovalRecord (+token
+    but the endpoint spec explicitly returns "ApprovalRecord (+token
     on APPROVED)" — so this wraps the frozen record rather than extending it."""
 
     approval: ApprovalRecord

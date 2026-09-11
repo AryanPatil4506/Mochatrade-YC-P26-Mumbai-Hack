@@ -2,9 +2,9 @@
 scenario. Ported from Part 4's attack simulator, rewritten against
 packages.contracts.schemas instead of a parallel dataclass.
 
-Per CLAUDE.md's security principle for the lab: these functions never execute
-any tool. They only build a ProposedAction that the runner then feeds through
-the real Part 2 -> Part 3 -> Part 4 pipeline, exactly like a real agent would.
+These functions never execute any tool. They only build a ProposedAction
+that the runner then feeds through the real Part 2 -> Part 3 -> Part 4
+pipeline, exactly like a real agent would.
 """
 
 from __future__ import annotations

@@ -1,7 +1,7 @@
 """Prompt-injection detector (Part 2).
 
 `injection_signal = max(rule_score, classifier_score)` — never averaged, so
-a confident rule hit can't be diluted by an uncertain model (CLAUDE.md).
+a confident rule hit can't be diluted by an uncertain model.
 
 Rules are the primary, always-available signal (rules/injection_patterns.yaml,
 seven families). The DeBERTa classifier is an optional confirmer: lazy-loaded,

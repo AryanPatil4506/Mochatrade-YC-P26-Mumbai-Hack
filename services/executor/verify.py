@@ -1,8 +1,8 @@
-"""Capability token verification — the enforcement point (CLAUDE.md
-"Enforcement Boundary" layer 3). Every /v1/execute call is checked here in
-order: signature -> expiry -> jti replay -> args_sha256 -> tool/operation
-match. Any failure raises TokenError with the matching reason so the API
-layer can return 403 + the right audit trail.
+"""Capability token verification — the enforcement point (Enforcement
+Boundary layer 3: capability tokens). Every /v1/execute call is checked
+here in order: signature -> expiry -> jti replay -> args_sha256 ->
+tool/operation match. Any failure raises TokenError with the matching
+reason so the API layer can return 403 + the right audit trail.
 """
 
 from __future__ import annotations

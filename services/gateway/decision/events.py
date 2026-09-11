@@ -1,6 +1,6 @@
 """Best-effort bridge from the gateway process to the executor's shared
-`/v1/events` SSE hub (CLAUDE.md: "single GET /v1/events SSE endpoint... all
-services publish here"). Since the gateway and executor are separate
+`/v1/events` SSE hub — the single GET /v1/events SSE endpoint all services
+publish to. Since the gateway and executor are separate
 processes/ports, "publish" means one small internal HTTP POST — never a
 network call to decide anything, purely fire-and-forget telemetry for the
 dashboard's IncidentTimeline/RiskGauge. If the executor is down or slow this

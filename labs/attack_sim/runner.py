@@ -4,7 +4,7 @@ Generates a scenario's ProposedAction and sends it through the *real*
 pipeline exactly as a real agent would: POST to the gateway's
 /v1/gateway/evaluate, and only if that returns an ALLOW capability_token,
 POST to the executor's own /v1/execute with it. The runner never calls a
-tool function directly — CLAUDE.md's core principle for the lab.
+tool function directly — every scenario has to survive the real pipeline.
 """
 
 from __future__ import annotations

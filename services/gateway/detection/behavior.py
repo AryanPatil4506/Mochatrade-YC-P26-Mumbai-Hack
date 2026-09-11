@@ -6,13 +6,14 @@ Determinism note: the session-window rules are keyed off timestamps carried
 on the *input* (`ProposedAction.timestamp`), never `datetime.now()` — so
 the detector itself never reads the wall clock, and replaying the same
 sequence of actions against a fresh session produces the same scores every
-time, matching CLAUDE.md's "no wall-clock reads" rule for scoring functions.
+time — no wall-clock reads, matching every other scoring function.
 
 Session state is in-memory, current-session-only, no historical baseline —
-deliberately not a trained/unsupervised model (see "Do not use Isolation
-Forest..." in CLAUDE.md). `record_outcome` must be called once per finalized
-proposal (after the composite score is known) so later proposals in the same
-session can see it; it is not part of the concurrent detector call itself.
+deliberately not a trained/unsupervised model (no Isolation Forest or
+similar: no baseline data exists to fit one meaningfully). `record_outcome`
+must be called once per finalized proposal (after the composite score is
+known) so later proposals in the same session can see it; it is not part
+of the concurrent detector call itself.
 """
 
 from __future__ import annotations

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Launches the three Sentinel services as separate processes, per CLAUDE.md's
+# Launches the three Sentinel services as separate processes, per the
 # "process isolation" enforcement layer: agent (8001), gateway (8002),
 # executor (8003). Ctrl-C stops all three.
 set -euo pipefail

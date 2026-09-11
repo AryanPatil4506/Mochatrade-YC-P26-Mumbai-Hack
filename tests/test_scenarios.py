@@ -1,4 +1,4 @@
-"""The five canonical scenarios from CLAUDE.md — must match exactly.
+"""The five canonical scenarios — must match exactly.
 
 Also: determinism (10x identical input -> byte-identical output),
 monotonicity (raising any one factor never lowers risk_score), and

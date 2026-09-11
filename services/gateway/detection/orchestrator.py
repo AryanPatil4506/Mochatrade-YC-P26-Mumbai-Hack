@@ -1,6 +1,6 @@
 """Runs all seven Part 2 detectors concurrently and composes a RiskAssessment.
 
-Per CLAUDE.md, all seven detectors are pure functions run concurrently via
+All seven detectors are pure functions run concurrently via
 `asyncio.gather` (budget: p95 under 400ms with classifiers warm). Six of the
 seven are cheap synchronous pure functions; only `injection.detect_injection`
 has real async I/O (the optional classifier call). All seven are still

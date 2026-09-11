@@ -1,5 +1,5 @@
 """Weights + escalation floors — composes the seven risk factors into a
-single `risk_score`. See CLAUDE.md — "Composite Score & Decision".
+single `risk_score`.
 
 This module produces `RiskAssessment.risk_score` /
 `risk_factors` / `escalation_floor_triggered` (Part 2's output contract). It

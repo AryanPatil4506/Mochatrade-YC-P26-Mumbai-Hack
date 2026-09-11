@@ -12,8 +12,8 @@ faked:
   executor actually runs a tool)
 
 The scoring/threshold math itself (composer.py's weights+floors, and the
-4-band lookup below) is unchanged — it already matches CLAUDE.md's five
-canonical test scenarios exactly, so it was kept rather than replaced by a
+4-band lookup below) is unchanged — it already matches the five canonical
+test scenarios exactly, so it was kept rather than replaced by a
 teammate's separate rule-engine implementation (see integration notes).
 """
 

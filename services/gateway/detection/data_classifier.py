@@ -1,6 +1,6 @@
 """PII / data-sensitivity classifier (`data_sensitivity` risk factor).
 
-Presidio Analyzer + spaCy `en_core_web_sm` per CLAUDE.md — core PII classes
+Presidio Analyzer + spaCy `en_core_web_sm` — core PII classes
 (SSN, credit card, IBAN, phone, email) are regex/checksum recognizers and
 work without any NER model; `PERSON`/`LOCATION`/`ORGANIZATION` need spaCy's
 NER and are simply not detected if it isn't installed (a lighter but

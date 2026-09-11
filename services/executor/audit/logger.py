@@ -2,7 +2,7 @@
 decision time) and the executor (to close it out at execution time). Keeps
 SQL persistence (repository.py) separate from when/why a row gets written.
 
-One row per request_id, updated in place — per CLAUDE.md's AuditLogEntry
+One row per request_id, updated in place — per the frozen AuditLogEntry
 contract. `executed` starts False and only ever flips to True when a sandbox
 tool actually ran.
 """
@@ -66,8 +66,8 @@ def record_token_failure(action: ProposedAction, *, reason: str) -> None:
     exist for this request_id (a compromised agent can call /v1/execute
     directly, bypassing the gateway). Create-or-touch the row so the
     compromised-agent test's `executed: false` assertion has something to
-    read; CLAUDE.md's AuditLogEntry has no policy_rule_triggered field, so
-    that reason is reported in the 403 body, not persisted here."""
+    read; the frozen AuditLogEntry contract has no policy_rule_triggered
+    field, so that reason is reported in the 403 body, not persisted here."""
 
     existing = repo.get_audit_log_by_request_id(str(action.request_id))
     if existing is not None:

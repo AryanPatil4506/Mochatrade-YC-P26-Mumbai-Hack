@@ -1,6 +1,6 @@
-"""The single shared SSE event bus (CLAUDE.md: "GET /v1/events, all services
-publish here"). Hosted on the executor since that's where CLAUDE.md's
-endpoint table lists it. The gateway pushes decision events in via a small
+"""The single shared SSE event bus — "GET /v1/events, all services publish
+here." Hosted on the executor since that's where the public endpoint table
+lists it. The gateway pushes decision events in via a small
 internal HTTP call (services/gateway/decision/events.py); the executor
 publishes its own execution/token events directly by calling `publish()`
 in-process. One in-memory fan-out queue per subscriber, matching the

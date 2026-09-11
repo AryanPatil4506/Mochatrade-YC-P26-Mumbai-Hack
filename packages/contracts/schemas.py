@@ -1,5 +1,5 @@
 """Frozen shared contracts between Part 1 (agent), Part 2 (detection), Part 3
-(policy/decision), and Part 4 (executor). See CLAUDE.md — "Frozen Contracts".
+(policy/decision), and Part 4 (executor).
 
 Do not rename, add, or remove fields without explicit sign-off from all four
 parts. Every model rejects unknown fields (`extra="forbid"`).

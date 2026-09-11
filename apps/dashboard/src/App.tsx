@@ -12,9 +12,8 @@ import { useActivityStream } from "./hooks/useActivityStream";
 import type { PolicySnapshot } from "./types/api";
 import type { CurrentDecision } from "./lib/currentDecision";
 
-// One screen, three fixed columns, no router, no login — per CLAUDE.md's
-// dashboard spec: Agent Session | Decision | Approval Queue + Incident
-// Timeline.
+// One screen, three fixed columns, no router, no login: Agent Session |
+// Decision | Approval Queue + Incident Timeline.
 function App() {
   const [policy, setPolicy] = useState<PolicySnapshot | null>(null);
   const [current, setCurrent] = useState<CurrentDecision | null>(null);

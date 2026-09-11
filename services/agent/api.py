@@ -16,6 +16,10 @@ from datetime import datetime, timezone
 from typing import Any
 from uuid import UUID, uuid4
 
+from dotenv import load_dotenv
+
+load_dotenv()  # picks up .env for GROQ_API_KEY etc. before services.agent.llm.client is imported
+
 import httpx
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel

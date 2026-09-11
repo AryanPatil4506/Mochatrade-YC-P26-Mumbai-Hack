@@ -1,5 +1,5 @@
 """CI invariant: fail if `openai` or `langchain` is imported anywhere under
-services/gateway/decision/ (the core invariant in CLAUDE.md — the LLM
+services/gateway/decision/ (the core invariant of this project — the LLM
 proposes, a deterministic engine decides). Also passes vacuously if the
 directory is ever absent, so this keeps enforcing as the module evolves.
 """

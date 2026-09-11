@@ -1,6 +1,5 @@
 """HMAC-signed, single-use capability tokens — the real authorization
-mechanism behind Decision.capability_token. See CLAUDE.md "Enforcement
-Boundary" layer 3.
+mechanism behind Decision.capability_token. Enforcement Boundary layer 3.
 
 Only the gateway process issues tokens (this module). The executor's
 verify.py imports SIGNING_KEY/canonical_json/args_sha256 from here purely as
@@ -33,7 +32,7 @@ TOKEN_TTL_SECONDS = 120
 class TokenError(Exception):
     """Raised by verify.py. `reason` is one of:
     signature_invalid | expired | replayed | args_mismatch
-    matching CLAUDE.md's compromised-agent test taxonomy."""
+    matching the compromised-agent test taxonomy."""
 
     def __init__(self, reason: str):
         self.reason = reason

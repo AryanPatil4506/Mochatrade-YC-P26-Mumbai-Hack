@@ -10,7 +10,7 @@ POST /internal/events        gateway -> executor telemetry bridge, not part
 
 No tool implementations exist outside services/executor/tools/, and nothing
 runs here without a capability token verified by verify.py first —
-structural + capability-token enforcement layers per CLAUDE.md.
+structural + capability-token enforcement layers.
 """
 
 from __future__ import annotations
@@ -19,6 +19,10 @@ import json
 from datetime import datetime, timezone
 from typing import Any, Optional
 from uuid import UUID
+
+from dotenv import load_dotenv
+
+load_dotenv()  # picks up .env (SENTINEL_DB_PATH, signing keys, etc.) before other imports
 
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel

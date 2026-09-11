@@ -1,5 +1,5 @@
 """Secrets scanner — custom regex pack + Shannon entropy. Own module, not
-Presidio, per CLAUDE.md ("Model & Library Choices").
+Presidio.
 """
 
 from __future__ import annotations
