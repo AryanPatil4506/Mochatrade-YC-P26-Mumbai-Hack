@@ -28,7 +28,7 @@ from services.agent.llm.prompts import SYSTEM_PROMPT, build_user_turn
 from services.agent.llm.tool_schemas import TOOL_FUNCTIONS, TOOL_NAME_OPERATION_MAP
 
 GROQ_BASE_URL = os.environ.get("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
-MODEL_NAME = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
+MODEL_NAME = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
 FIXED_SEED = 7
 
 

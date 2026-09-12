@@ -29,7 +29,7 @@ TOOL_FUNCTIONS: list[dict] = [
         "type": "function",
         "function": {
             "name": "crm_read",
-            "description": "Read a CRM contact record.",
+            "description": "Read a CRM contact or account record. Use only when the request is about the contact/account itself (e.g. their details, deal, or company) — not for support tickets.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -60,7 +60,7 @@ TOOL_FUNCTIONS: list[dict] = [
         "type": "function",
         "function": {
             "name": "ticketing_read",
-            "description": "Read a support ticket.",
+            "description": "Read a support ticket by its ticket ID. Use whenever the request mentions a ticket number or a customer's support ticket — not the CRM contact/account record.",
             "parameters": {
                 "type": "object",
                 "properties": {"ticket_id": {"type": "string"}},
@@ -89,7 +89,7 @@ TOOL_FUNCTIONS: list[dict] = [
         "type": "function",
         "function": {
             "name": "database_read",
-            "description": "Run a read-only query against a database table.",
+            "description": "Run a read-only query against a raw database table (not CRM contacts or support tickets, which have their own tools). Use only when the request needs rows from a specific table you don't already have from gathered context.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -121,7 +121,7 @@ TOOL_FUNCTIONS: list[dict] = [
         "type": "function",
         "function": {
             "name": "email_send",
-            "description": "Send an email.",
+            "description": "Send or forward content to a recipient by email. Use this for any request to send, email, forward, or exfiltrate data to someone — the action of transmitting the data, not a lookup of where the data lives.",
             "parameters": {
                 "type": "object",
                 "properties": {
